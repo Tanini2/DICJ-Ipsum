@@ -37,7 +37,7 @@ namespace DICJ_Ipsum
                 quantite = RandomNumber.Between(1, 101);
                 for(int i = 0; i < quantite; i++)
                 {
-                    index = RandomNumber.Between(0, 100);
+                    index = RandomNumber.Between(0, 249);
                     aRetourner += DictionnaireInfo.DicoInfo.ElementAt(index).Value + " ";
                 }
             }
@@ -45,7 +45,7 @@ namespace DICJ_Ipsum
             {
                 for (int i = 0; i < quantite; i++)
                 {
-                    index = RandomNumber.Between(0, quantite - 1);
+                    index = RandomNumber.Between(0, 249);
                     aRetourner += DictionnaireInfo.DicoInfo.ElementAt(index).Value + " ";
                 }
             }

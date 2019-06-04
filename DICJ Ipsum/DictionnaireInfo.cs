@@ -87,7 +87,7 @@ namespace DICJ_Ipsum
             {75, "Debug" },
             {76, "Point d'arrêt" },
             {77, "StackOverflow" },
-            {78, "OutOfBoundsException" },
+            {78, "OutOfRangeException" },
             {79, "Exception" },
             {80, "Classe" },
             {81, "Interface" },

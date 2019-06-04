@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -50,7 +51,7 @@ namespace DICJ_Ipsum
         {
             string resultat = Generateur.Generate();
             Console.WriteLine(resultat);
-            AfficherFin();
+            AfficherFin(resultat);
         }
 
         private void Option2()
@@ -70,7 +71,7 @@ namespace DICJ_Ipsum
                     Console.WriteLine(resultat);
                 }
             }
-            AfficherFin();
+            AfficherFin(resultat);
         }
 
         private void Option3()
@@ -83,7 +84,7 @@ namespace DICJ_Ipsum
             Write("Entrez le texte désiré : ");
             aTransformer = ReadLine();
             WriteLine("En quel type voulez-vous faire générer votre texte?");
-            WriteLine("1 - Hexadécimal");
+            WriteLine("1 - Code ASCII");
             WriteLine("2 - Binaire");
             Write("Votre choix : ");
             choix = ReadLine();
@@ -101,23 +102,54 @@ namespace DICJ_Ipsum
             }
             resultat = Generateur.Generate(type, aTransformer);
             WriteLine(resultat);
-            AfficherFin();
+            AfficherFin(resultat);
         }
 
-        private void AfficherFin()
+        private void AfficherFin(string resultat)
         {
-            string m = "";
-            Write("Appuyez sur M pour revenir au menu. ");
-            m = ReadLine().ToLower();
-            if (m == "m")
+            string choix = "";
+            WriteLine("");
+            WriteLine("Appuyez sur M pour revenir au menu.");
+            WriteLine("Appuyez sur I pour imprimer le résultat dans un fichier.");
+            choix = ReadLine().ToLower();
+            if (choix == "m")
             {
                 Menu1();
+            }
+            else if (choix == "i")
+            {
+                EcrireFichier(resultat);
             }
             else
             {
                 WriteLine("Merci d'avoir utilisé ce programme!");
                 Thread.Sleep(1500);
                 Environment.Exit(0);
+            }
+        }
+
+        private void EcrireFichier(string resultat)
+        {
+            string fileName = @"C:\resultat.txt";
+
+            try
+            {
+                // Check if file already exists. If yes, delete it.     
+                if (File.Exists(fileName))
+                {
+                    File.Delete(fileName);
+                }
+
+                // Create a new file     
+                using (StreamWriter sw = File.CreateText(fileName))
+                {
+                    sw.WriteLine(resultat);
+                }
+                WriteLine("Un fichier texte resultat.txt a été créé dans votre disque C:");
+            }
+            catch (Exception Ex)
+            {
+                Console.WriteLine(Ex.ToString());
             }
         }
     }
