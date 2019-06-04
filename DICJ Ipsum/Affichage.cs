@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using static System.Console;
 
@@ -49,6 +50,7 @@ namespace DICJ_Ipsum
         {
             string resultat = Generateur.Generate();
             Console.WriteLine(resultat);
+            AfficherFin();
         }
 
         private void Option2()
@@ -68,7 +70,7 @@ namespace DICJ_Ipsum
                     Console.WriteLine(resultat);
                 }
             }
-            
+            AfficherFin();
         }
 
         private void Option3()
@@ -99,6 +101,24 @@ namespace DICJ_Ipsum
             }
             resultat = Generateur.Generate(type, aTransformer);
             WriteLine(resultat);
+            AfficherFin();
+        }
+
+        private void AfficherFin()
+        {
+            string m = "";
+            Write("Appuyez sur M pour revenir au menu. ");
+            m = ReadLine().ToLower();
+            if (m == "m")
+            {
+                Menu1();
+            }
+            else
+            {
+                WriteLine("Merci d'avoir utilisé ce programme!");
+                Thread.Sleep(1500);
+                Environment.Exit(0);
+            }
         }
     }
 }
